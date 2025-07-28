@@ -1,14 +1,19 @@
 {
   "name": "AetherPress v0.1 (Alpha)",
+  //"image": "mcr.microsoft.com/devcontainers/universal:2",
+  //"image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye", // Use a recent Node LTS version
+  //x "image": "mcr.microsoft.com/devcontainers/javascript-node:lts",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bullseye",
 
   "waitFor": "onCreateCommand",
   "updateContentCommand": "cd client && npm install && cd ../server && npm install express puppeteer && npm install --save-dev nodemon && cd ..",
-
-  "postCreateCommand": "npm install -g concurrently",
+  "postCreateCommand": "",
+  /**/
   "postAttachCommand": {
-    "client + server": "concurrently 'cd ./client && npm run dev' 'cd ./server && npm run dev'"
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev"
   },
+  /**/
 
   // --- VS CODE CUSTOMIZATIONS ---
   "customizations": {
@@ -19,7 +24,6 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "svelte.svelte-vscode",
         "bradlc.vscode-tailwindcss",
         "prisma.prisma",
         "github.copilot",
